@@ -10,7 +10,6 @@ class Calendar {
 	private $day;
 	private $month;
 	private $year;
-	private $eventlinks  = FALSE;
 	private $events = FALSE;
 	private $start_hour = 8;
 	private $end_hour = 20;
@@ -40,9 +39,9 @@ class Calendar {
 	private $today;
 
 	public function __construct() {
-		$this->day   = date('d');
+		$this->day = date('d');
 		$this->month = date('n');
-		$this->year  = date('Y');
+		$this->year = date('Y');
 		$this->today = date('Y-m-d');
 	}
 
@@ -441,59 +440,6 @@ class Calendar {
 		}
 		return $h;
 	}
-
-	public function setLink($url) 
-	{
-		if (!is_array($url))
-			return;
-		$this->eventlinks = $url;
-	}
-
-
-	private function buildLinks($date, $eventlink = FALSE, $default = '')
-	{
-		if (!$this->eventlinks)
-			return $default;
-
-		$eventlinks = $this->eventlinks;
-		
-		$h          = $default;
-		
-		$date       = date('Y-m-d', strtotime($date));
-		
-		if ($eventlink)
-		{
-			return $this->processLink($eventlink);
-		}
-
-		foreach ($eventlinks as $key=>$event)
-		{
-			$edate = date('Y-m-d', strtotime($key));
-
-			if (is_array($event)) {
-				if ($date == $edate) {
-					$h .= $this->processLink($event);
-				}
-			} else {
-				if ($date == $key)
-				{
-					$h .= $event;
-				}
-			} 
-		}
-		return $h;
-	}
-
-
-	private function processLink($eventlink)
-	{
-		$h = "";
-		foreach ($eventlink as $e) {
-			$h .= "<a href='".$e."'>";
-		}
-		return $h;
-	}
-
 
 	private function prevLink() {
 		$y = $this->year;
