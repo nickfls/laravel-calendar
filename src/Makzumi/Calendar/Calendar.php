@@ -823,9 +823,35 @@ class Calendar
     $get  = $_GET;
     $vars = '';
     foreach ($get as $key=>$value)
+    {
       if ($key != 'cdate')
-        $vars .= '&' . $key . '=' . $value;
+      {
+        $vars .= $this->compileOldGET($key, $value);
+      }
+    }
     return $vars;
+  }
+
+
+  /**
+   * Stick old values together
+   * 
+   * @return string
+   */
+  private function compileOldGET($key, $value, $prepend='', $append='')
+  {
+    if ( is_array($value) )
+    {
+      $string = '';
+      
+      foreach ($value as $item)
+      {
+        $string .= $this->compileOldGET( $key, $item,'[',']');
+      }
+
+      return $string;
+    }
+    return '&' . $key . '=' . $prepend.$value.$append;
   }
 
 
