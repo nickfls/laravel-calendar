@@ -1,17 +1,21 @@
 {
 	"name": "makzumi/calendar",
 	"type": "library",
-	"description": "Laravel 4 Flexible Calendar",
+	"description": "Laravel 4-5 Flexible Calendar",
 	"keywords": ["laravel","calendar", "events"],
 	"authors": [
 		{
 			"name": "Ammar Almakzumi",
 			"email": "info@makzumi.com"
+		},
+		{
+			"name": "Cyrill Kalita",
+			"email": "cyrill@kalita.by"
 		}
 	],
 	"require": {
-		"php": ">=5.3.0",
-		"illuminate/support": "~4"
+		"php"               : ">=5.3.0",
+		"illuminate/support": "~5.2",
 	},
 	"autoload": {
 		"classmap": [],
