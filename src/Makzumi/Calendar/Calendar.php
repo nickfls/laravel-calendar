@@ -224,7 +224,7 @@ class Calendar
     /**
      * Make the Calendar
      *
-     * @return Calendar
+     * @return  $this
      */
     public function make()
     {
@@ -234,7 +234,7 @@ class Calendar
     /**
      * Generate the Calendar using all the settings
      *
-     * @return String
+     * @return  String
      */
     public function generate()
     {
@@ -260,61 +260,61 @@ class Calendar
     /**
      * Display the Navigation
      *
-     * @param  boolean $show
-     * @return $this
+     * @param   boolean $show
+     * @return  $this
      */
     public function showNav($show)
     {
         $this->nav = $show;
-
+        # return Calendar instance
         return $this;
     }
 
     /**
      * Set the View
      *
-     * @param string $view
-     * @return $this
+     * @param   string $view
+     * @return  $this
      */
     public function setView($view)
     {
         $this->view = $view;
-
+        # return Calendar instance
         return $this;
     }
 
     /**
      * What class to use in CSS
      *
-     * @param string $class
-     * @return $this
+     * @param   string $class
+     * @return  $this
      */
     public function setTimeClass($class)
     {
         $this->timeClass = $class;
-
+        # return Calendar instance
         return $this;
     }
 
     /**
      * What are the start-end hours (for the Day view )
-     * @param int $s
-     * @param int $e
-     * @return $this
+     * @param   int $s
+     * @param   int $e
+     * @return  $this
      */
     public function setStartEndHours($s, $e)
     {
         $this->start_hour = $s;
         $this->end_hour = $e;
-
+        # return Calendar instance
         return $this;
     }
 
     /**
      * Decide for when we are displyaing the calendar?
      *
-     * @param mixed|string $date
-     * @return $this
+     * @param   mixed|string $date
+     * @return  $this
      */
     public function setDate($date = FALSE)
     {
@@ -327,28 +327,28 @@ class Calendar
         $this->day   = @$day;
         $this->month = @$month;
         $this->year  = @$year;
-
+        # return Calendar instance
         return $this;
     }
 
     /**
      * WHatever is the Base Path for links
      *
-     * @param string $path
-     * @return $this
+     * @param   string $path
+     * @return  $this
      */
     public function setBasePath($path)
     {
         $this->basePath = $path;
-
+        # return Calendar instance
         return $this;
     }
 
     /**
      * Set the Day labels
      *
-     * @param array $array
-     * @return $this
+     * @param   array $array
+     * @return  $this
      */
     public function setDayLabels($array)
     {
@@ -358,159 +358,181 @@ class Calendar
         }
         # set
         $this->dayLabels = $array;
-
+        # return Calendar instance
         return $this;
     }
 
     /**
      * Set the Month Labels
      *
-     * @param Array $array
+     * @param   array $array
+     * @return  $this
      */
     public function setMonthLabels($array)
     {
         # Error check
-        if (count($array) != 12)
-        {
+        if (count($array) != 12){
             return;
         }
-
+        # set labels
         $this->monthLabels = $array;
+        # return calendar instance
         return $this;
     }
 
     /**
      * Push the Events
      *
-     * @param Array $events
+     * @param   array $events
+     * @return  $this
      */
     public function setEvents($events)
     {
-        if (!is_array($events))
-        {
-            return;
-        }
+        # set events
         $this->events = $events;
+        # return Calendar instance
         return $this;
     }
 
     /**
      * Set the Wrapper for the Event
      *
-     * @param Array $wrap
+     * @param   Array $wrap
+     * @return  $this
      */
     public function setEventsWrap($wrap)
     {
+        # set th wrapper
         $this->eventWrap = $wrap;
+        # return Calendar instance
         return $this;
     }
 
     /**
      * Set the Day wrapper
      *
-     * @param Array $wrap
+     * @param   array $wrap
+     * @return  $this
      */
     public function setDayWrap($wrap)
     {
         $this->dayWrap = $wrap;
+        # return Calendar instance
         return $this;
     }
 
     /**
      * Set the Next Icon
      *
-     * @param string $html
+     * @param   string $html
+     * @return  $this
      */
     public function setNextIcon($html) {
         $this->nextIco = $html;
+        # return Calendar instance
         return $this;
     }
 
     /**
      * Set the Previous Icon
      *
-     * @param string $html
+     * @param   string $html
+     * @return  $this
      */
     public function setPrevIcon($html)
     {
         $this->prevIco = $html;
+        # return Calendar instance
         return $this;
     }
 
     /**
      * Set the Date Wrapper
      *
-     * @param Array $wrap
+     * @param   array $wrap
+     * @return  $this
      */
     public function setDateWrap($wrap)
     {
         $this->dateWrap = $wrap;
+        # return Calendar instance
         return $this;
     }
 
     /**
      * Set the Table class
      *
-     * @param string $class
+     * @param   string $class
+     * @return  $this
      */
     public function setTableClass($class)
     {
         $this->tableClass = $class;
+        # return Calendar instance
         return $this;
     }
 
     /**
      * Set the Header Class
      *
-     * @param string $class
+     * @param   string $class
+     * @return  $this
      */
     public function setHeadClass($class)
     {
         $this->headClass = $class;
+        # return Calendar instance
         return $this;
     }
 
     /**
      * Set Next Button Class
-     * @param string $clas
+     *
+     * @param   string $clas
+     * @return  $this
      */
     public function setNextClass($class) {
         $this->nextClass = $class;
+        # return Calendar instance
         return $this;
     }
 
     /**
      * Set Previous Button Class
-     * @param string $clas
+     *
+     * @param   string $clas
+     * @return  $this
      */
     public function setPrevClass($class)
     {
         $this->prevClass = $class;
+        # return Calendar instance
         return $this;
     }
 
     /**
      * Set the Links
      *
-     * @param array $urls
+     * @param   array $urls
+     * @return  $this
      */
     public function setLink($urls)
     {
-        if (!is_array($urls))
-        {
-            return;
-        }
         $this->eventlinks = $urls;
+        # return Calendar instance
         return $this;
     }
 
     /**
      * Set the class for Labels
+     *
      * @param string $class
+     * @return  $this
      */
     public function setLabelsClass($class)
     {
         $this->labelsClass = $class;
+        # return Calendar instance
         return $this;
     }
 
