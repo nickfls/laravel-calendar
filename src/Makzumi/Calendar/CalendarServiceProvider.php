@@ -6,14 +6,12 @@ use Illuminate\Support\ServiceProvider;
 
 class CalendarServiceProvider extends ServiceProvider
 {
-
     /**
      * Indicates if loading of the provider is deferred.
      *
      * @var bool
      */
     protected $defer = false;
-
 
     /**
      * Register the service provider.
@@ -41,5 +39,4 @@ class CalendarServiceProvider extends ServiceProvider
     {
         return ['calendar'];
     }
-
 }
