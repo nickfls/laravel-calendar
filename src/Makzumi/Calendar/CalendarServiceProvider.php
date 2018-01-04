@@ -14,13 +14,20 @@ class CalendarServiceProvider extends ServiceProvider
     protected $defer = false;
 
     /**
+     * Share name of the Service
+     *
+     * @var string
+     */
+    protected $name = 'calendar';
+
+    /**
      * Register the service provider.
      *
      * @return void
      */
     public function register()
     {
-        $this->app['calendar'] = $this->app->share(function($app) {
+        $this->app[$this->name] = $this->app->bind($this->name, function($app) {
             return new Calendar;
         });
 
@@ -37,6 +44,6 @@ class CalendarServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['calendar'];
+        return [$this->name];
     }
 }
