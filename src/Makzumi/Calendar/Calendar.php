@@ -79,14 +79,14 @@ class Calendar
      *
      * @var boolean
      */
-    private $eventlinks = FALSE;
+    private $eventlinks = false;
 
     /**
      * Array with the Events
      *
      * @var boolean
      */
-    private $events = FALSE;
+    private $events = false;
 
     /**
      * Starting Hour for the Day Calendar
@@ -106,7 +106,7 @@ class Calendar
      * Add navigation
      * @var boolean
      */
-    private $nav = TRUE;
+    private $nav = true;
 
     /**
      * Initial View
@@ -242,14 +242,14 @@ class Calendar
         $this->buildHeader();
 
         # Switch the Views
-        switch ($this->view){
-            case 'day' :
+        switch ($this->view) {
+            case 'day':
                 $this->buildBodyDay();
                 break;
-            case 'week' :
+            case 'week':
                 $this->buildBodyWeek();
                 break;
-            default :
+            default:
                 $this->buildBody();
                 break;
         }
@@ -316,7 +316,7 @@ class Calendar
      * @param   mixed|string $date
      * @return  $this
      */
-    public function setDate($date = FALSE)
+    public function setDate($date = false)
     {
         $date  = explode('-', $date);
 
@@ -353,7 +353,7 @@ class Calendar
     public function setDayLabels($array)
     {
         # Error check
-        if (count($array) != 7){
+        if (count($array) != 7) {
             return;
         }
         # set
@@ -371,7 +371,7 @@ class Calendar
     public function setMonthLabels($array)
     {
         # Error check
-        if (count($array) != 12){
+        if (count($array) != 12) {
             return;
         }
         # set labels
@@ -427,7 +427,8 @@ class Calendar
      * @param   string $html
      * @return  $this
      */
-    public function setNextIcon($html) {
+    public function setNextIcon($html)
+    {
         $this->nextIco = $html;
         # return Calendar instance
         return $this;
@@ -491,7 +492,8 @@ class Calendar
      * @param   string $clas
      * @return  $this
      */
-    public function setNextClass($class) {
+    public function setNextClass($class)
+    {
         $this->nextClass = $class;
         # return Calendar instance
         return $this;
@@ -549,10 +551,12 @@ class Calendar
         $h .= "<thead>";
         $h .= "<tr class='" . $this->headClass . "'>";
         $cs = 5;
-        if ($this->view == 'week' || $this->view == 'day')
+        if ($this->view == 'week' || $this->view == 'day') {
             $h .= "<th>&nbsp;</th>";
-        if ($this->view == 'day')
+        }
+        if ($this->view == 'day') {
             $cs = 1;
+        }
 
         if ($this->nav) {
             $h .= "<th>";
@@ -584,8 +588,9 @@ class Calendar
 
             $h .= "</tr>";
         }
-        if ($this->view == 'day' || $this->view == 'week')
+        if ($this->view == 'day' || $this->view == 'week') {
             $h .= self::getWeekDays();
+        }
 
         $this->html .= $h;
     }
@@ -618,12 +623,12 @@ class Calendar
         for ($j = 0; $j <= $cnt; $j++) {
             $cs = $cnt == 0 ? 3 : 1;
             $h .= "<td colspan='$cs'>";
-            if ($this->view == 'day')
+            if ($this->view == 'day') {
                 $getDayNumber = date('w', strtotime($time));
-            else
+            } else {
                 $getDayNumber = $j;
+            }
             if ($day <= $mlen) {
-
             } else {
                 $day = 1;
             }
@@ -663,7 +668,7 @@ class Calendar
                 $h .= $this->dateWrap[0];
                 if ($day <= $monthLength && ($i > 0 || $j >= $startingDay)) {
                     $h .= $this->dayWrap[0];
-                    $h .= $this->getEventSearchLink( $day );
+                    $h .= $this->getEventSearchLink($day);
                     $h .= $this->dayWrap[1];
                     $h .= $this->buildEvents($currDate);
                     $day++;
@@ -712,13 +717,13 @@ class Calendar
                     $h .= "<td colspan='3' data-datetime='$dt'>";
                     $h .= $this->dateWrap[0];
 
-                    $hasEvent = FALSE;
-                    foreach ($events as $key=>$event) {
+                    $hasEvent = false;
+                    foreach ($events as $key => $event) {
                         //EVENT TIME AND DATE
                         $time_e = strtotime($key);
                         if ($time_e >= $time_1 && $time_e < $time_2) {
-                            $hasEvent = TRUE;
-                            $h .= $this->buildEvents(FALSE, $event);
+                            $hasEvent = true;
+                            $h .= $this->buildEvents(false, $event);
                         }
                     }
                     $h .= !$hasEvent ? '&nbsp;' : '';
@@ -750,7 +755,6 @@ class Calendar
                 $h .= "<td class='$this->timeClass'>" . date('g:ia', strtotime($i . $min)) . "</td>";
 
                 for ($k = 0; $k < count($this->week_days); $k++) {
-
                     $wd = $this->week_days[$k];
                     $time_r = $this->year . '-' . $this->month . '-' . $wd . ' ' . $i . ':00:00';
                     //we also need next month string
@@ -766,14 +770,14 @@ class Calendar
                     $h .= "<td data-datetime='$dt'>";
                     $h .= $this->dateWrap[0];
 
-                    $hasEvent = FALSE;
-                    foreach ($events as $key=>$event) {
+                    $hasEvent = false;
+                    foreach ($events as $key => $event) {
                         //EVENT TIME AND DATE
                         $time_e = strtotime($key);
                         //and the additional check should be done in the below conditional
                         if (($time_e >= $time_1 && $time_e < $time_2) || ($time_e >= $time_3 && $time_e < $time_4)) {
-                            $hasEvent = TRUE;
-                            $h .= $this->buildEvents(FALSE, $event);
+                            $hasEvent = true;
+                            $h .= $this->buildEvents(false, $event);
                         }
                     }
                     $h .= !$hasEvent ? '&nbsp;' : '';
@@ -796,10 +800,11 @@ class Calendar
      * @param  boolean $event
      * @return String
      */
-    private function buildEvents($date, $event = FALSE)
+    private function buildEvents($date, $event = false)
     {
-        if (!$this->events)
+        if (!$this->events) {
             return "";
+        }
         $events = $this->events;
         $h = "";
         //IF DAY CALC MINS
@@ -807,7 +812,7 @@ class Calendar
         if ($event) {
             return $this->processEvent($event);
         }
-        foreach ($events as $key=>$event) {
+        foreach ($events as $key => $event) {
             $edate = date('Y-m-d', strtotime($key));
             if (is_array($event)) {
                 if ($date == $edate) {
@@ -830,7 +835,8 @@ class Calendar
      * @param  Array $event
      * @return String
      */
-    private function processEvent($event) {
+    private function processEvent($event)
+    {
         $h = "";
         foreach ($event as $e) {
             $h .= $this->eventWrap[0];
@@ -859,7 +865,7 @@ class Calendar
             $time = strtotime('last sunday', strtotime($time . ' +1 day'));
             $time = date('Y-m-d', $time);
             $time = date('Y-m-d', strtotime($time . ' -1 week'));
-        } else if ($this->view == "day") {
+        } elseif ($this->view == "day") {
             $time = date('Y-m-d', strtotime($time . '-1day'));
         } else {
             $time = date('Y-m', strtotime($y . '-' . $m . '-01 -1month'));
@@ -887,7 +893,7 @@ class Calendar
             $time = strtotime('next sunday', strtotime($time . ' -1 day'));
             $time = date('Y-m-d', $time);
             $time = date('Y-m-d', strtotime($time . '+1week'));
-        } else if ($this->view == "day") {
+        } elseif ($this->view == "day") {
             $time = date('Y-m-d', strtotime($time . '+1day'));
         } else {
             $time = date('Y-m', strtotime($y . '-' . $m . '-01 +1month'));
@@ -924,10 +930,8 @@ class Calendar
     {
         $get  = $_GET;
         $vars = '';
-        foreach ($get as $key=>$value)
-        {
-            if ($key != 'cdate')
-            {
+        foreach ($get as $key => $value) {
+            if ($key != 'cdate') {
                 $vars .= $this->compileOldGET($key, $value);
             }
         }
@@ -939,14 +943,14 @@ class Calendar
      *
      * @return string
      */
-    private function compileOldGET($key, $value, $prepend='', $append='')
+    private function compileOldGET($key, $value, $prepend = '', $append = '')
     {
-        if ( is_array($value) ) {
+        if (is_array($value)) {
             # init string
             $string = '';
             # appen
             foreach ($value as $item) {
-                $string .= $this->compileOldGET( $key, $item,'[',']');
+                $string .= $this->compileOldGET($key, $item, '[', ']');
             }
             # return
             return $string;
@@ -961,7 +965,7 @@ class Calendar
      * @param  string $append
      * @return string
      */
-    private function getTdClass($date, $append = '' )
+    private function getTdClass($date, $append = '')
     {
         # get classes
         $class = array(
@@ -1010,7 +1014,7 @@ class Calendar
      */
     private function hasEventLinks()
     {
-        return !empty( $this->eventlinks );
+        return !empty($this->eventlinks);
     }
 
     /**
@@ -1019,7 +1023,7 @@ class Calendar
      * @param  int $date
      * @return boolean
      */
-    private function getEventsOnADate( $date )
+    private function getEventsOnADate($date)
     {
         # Load EventLinks
         $eventlinks = $this->eventlinks;
@@ -1028,7 +1032,7 @@ class Calendar
         $dayDate = $this->getDayDate($date);
 
         # get all events on a day
-        $events =  array_first($eventlinks, function($eventDate, $url) use ($dayDate) {
+        $events =  array_first($eventlinks, function ($eventDate, $url) use ($dayDate) {
             return $eventDate == $dayDate;
         }, false);
 
@@ -1058,8 +1062,8 @@ class Calendar
      */
     private function getEventSearchLink($date)
     {
-        $events = $this->getEventsOnADate( $date );
+        $events = $this->getEventsOnADate($date);
 
-        return  empty($events) ? $date : link_to( head($events), $date);
+        return  empty($events) ? $date : link_to(head($events), $date);
     }
 }
